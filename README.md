@@ -42,5 +42,12 @@ Mocha comes with two function `describe()` and `it()`. It uses those function to
 ### Mocha exemple
 ![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/47a18ca1-97b0-4dd2-972d-52e6287e16ed)
 
+## Usefull Extension
+## ES6 Mocha Snippets
+![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/aaab57ee-1164-4b9c-b1bd-8d5e74cd66ee)<br/>This extension will fasten your code writting with usefull autocomplete feature:<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/935e48fd-4943-4f93-ab18-2c5b7900c9a5)
+
+## Material Icon Theme
+![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/4cac6563-598f-4a75-8561-36df6012b28f)<br/>Just to get wonderfull icons like below:<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/5d9a5a9b-1501-4fe9-95e1-d547c4fcdd26)
+
 
 
