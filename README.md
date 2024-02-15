@@ -43,11 +43,37 @@ Mocha comes with two function `describe()` and `it()`. It uses those function to
 ![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/47a18ca1-97b0-4dd2-972d-52e6287e16ed)
 
 ## Usefull Extension
-## ES6 Mocha Snippets
+### ES6 Mocha Snippets
 ![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/aaab57ee-1164-4b9c-b1bd-8d5e74cd66ee)<br/>This extension will fasten your code writting with usefull autocomplete feature:<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/935e48fd-4943-4f93-ab18-2c5b7900c9a5)
 
-## Material Icon Theme
+### Material Icon Theme
 ![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/4cac6563-598f-4a75-8561-36df6012b28f)<br/>Just to get wonderfull icons like below:<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/5d9a5a9b-1501-4fe9-95e1-d547c4fcdd26)
+
+## Web elements and selectors
+
+### Selectors from cypress
+You can get et selector directly from cypress after running a test:
+1. Select a step in step body to display the iframe window you are testing
+2. Click on the target icon
+3. Click on the inspect icon
+4. Select the expected element in the iframe window
+5. Get the selector<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/c1b4037b-3591-4401-b9a3-ea5fd15463b0)
+
+### Selectors from chrome
+Chrome dev tools has a feature in itself which propose to get css selectors of elements from the html file.
+1. Open dev tools (press F12 on chrome tab)
+2. Select elements tab
+3. Click on the inspect icon
+4. Select the expected element
+5. Right-click on the expected element > copy > css selector<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/11f46935-7f1e-4d78-a2b2-1c5ee96c639e)
+
+### Best practice
+It is way recommended to create a specific attribute on the elements during the development. For instance `data-cy`. It will avoid any issue when a feature changes the css elements or its position in the html page.
+You can check this [topic](https://docs.cypress.io/guides/references/best-practices#Selecting-Elements) to be convinced.<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/3535d25c-0d64-4d00-b813-56b9a9bfe9a3)
+
+
+
+
 
 
 
