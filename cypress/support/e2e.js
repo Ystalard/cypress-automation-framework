@@ -18,6 +18,7 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+require('@cypress/xpath');
 
 // Add the following to cypress/support/e2e.ts or cypress/support/e2e.js
 
