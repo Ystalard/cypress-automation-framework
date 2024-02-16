@@ -5,6 +5,10 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}"
+    specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
+    env: {
+      // set environment variables
+      hideXHRInCommandLog: "true"
+    },
   }
 });
