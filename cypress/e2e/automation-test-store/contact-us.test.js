@@ -10,7 +10,7 @@ describe("Test Contact Us form via Automation Test Store", () => {
         cy.get('#ContactUsFrm_enquiry').type("Do you provide international shipping?");
         cy.get('button[title="Submit"]').click();
         cy.get('.mb40 > :nth-child(3)').should('have.text', "Your enquiry has been successfully sent to the store owner!")
-        console.log("Test has been completed!")
+        cy.log("Test has been completed!")
     })
 
     it("Should not be able to submit a successful submission via contact us form as all fields are required", () => {

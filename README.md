@@ -118,3 +118,7 @@ describe("Test Contact Us form via Automation Test Store", () => {
 })
 ```
 The console.log instruction will most likely happen before all the cy instructions.
+
+### Cypress logs
+As Console.log can't be used, you must use Cypress log command:<br/>
+`cy.log("Test has been completed!")`
