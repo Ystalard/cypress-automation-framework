@@ -71,6 +71,9 @@ Chrome dev tools has a feature in itself which propose to get css selectors of e
 It is way recommended to create a specific attribute on the elements during the development. For instance `data-cy`. It will avoid any issue when a feature changes the css elements or its position in the html page.
 You can check this [topic](https://docs.cypress.io/guides/references/best-practices#Selecting-Elements) to be convinced.<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/3535d25c-0d64-4d00-b813-56b9a9bfe9a3)
 
+### Usefull chrome extension
+[Ranorex Selocity](https://chromewebstore.google.com/detail/ranorex-selocity/ocgghcnnjekfpbmafindjmijdpopafoe) can be usefull to find the simpliest css selector. It can also be used to find element through xpath.<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/e8c9c175-af1f-45b3-ab1e-300d4d3887f7)
+
 
 
 
