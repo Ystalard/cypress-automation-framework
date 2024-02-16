@@ -122,3 +122,17 @@ The console.log instruction will most likely happen before all the cy instructio
 ### Cypress logs
 As Console.log can't be used, you must use Cypress log command:<br/>
 `cy.log("Test has been completed!")`
+
+### Promises
+It is actually possible to handle non cypress command by using promises:<br/>
+```
+describe('Inspect Automation Test Store items using chain of commands', () => {
+    it('Click on the first item using item text', () => {
+        cy.visit("https://automationteststore.com/")
+        cy.get('.prdocutname').contains('Skinsheen Bronzer Stick').click().then(function(itemHeaderText){
+            console.log('Selected the following item: ' + itemHeaderText.text())
+        })
+    })
+})
+```
+In the above code sample, the console.log command is handled correctly as it is inserted in the callback function of then method.
