@@ -76,10 +76,18 @@ You can check this [topic](https://docs.cypress.io/guides/references/best-practi
 
 ## Assertions
 
+### Overview
 The assertions on Cypress are handled through the chai library.<br/>
 Chai has several interfaces that allow the developer to choose the most comfortable. The chain-capable BDD styles provide an expressive language & readable style, while the TDD assert style provides a more classical feel.<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/e2650f46-bfa1-4116-af03-6ab5ea1b8f69)
 <br/>
 You can visit the [chai website](https://www.chaijs.com/) for more details.
+
+## Valid assertion
+![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/2279999d-572b-47ce-a1cd-701e27410e65)
+
+## Invalid assertion
+In case of invalid assertion, cypress presents the reason why it did not workd and also point out specifically where the invalid assertion is located in the code.<br/>
+![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/55958b3c-7752-42f7-b5ae-e6a8fda9cf60)
 
 
 
