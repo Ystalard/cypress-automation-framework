@@ -98,13 +98,23 @@ In case of invalid assertion, cypress presents the reason why it did not workd a
 <br/><br/>The above command executes the tests headlessly, you won't see them running. You can modify this behaviour by adding the `--headed` option: `./node_modules/.bin/cypress run --headed`<br/>
 All the options available are listed on cypress website documentation [here](https://docs.cypress.io/guides/guides/command-line#Options)
 
+## Cypress Asynchronous framework
 
-
-
-   
-
-
-
-
-
-
+Cypress framework is asynchone. So when some script instruction are added in a test while not being from the cy framework it leads to some unexpected behaviour.
+For instance in the below code:<br/>
+```
+describe("Test Contact Us form via Automation Test Store", () => {
+    it.only("Should be able to submit a successful submission via contact us form", () => {
+        cy.visit("https://automationteststore.com/"); 
+        cy.xpath('//a[contains(@href, "contact") and starts-with(text(), "Con")]').click();
+        cy.get('#ContactUsFrm_first_name').type("Jean");
+        cy.get('#ContactUsFrm_email').type("Jean.Valjean@email.com");
+        cy.get('#ContactUsFrm_email').should('have.attr', 'name', 'email')
+        cy.get('#ContactUsFrm_enquiry').type("Do you provide international shipping?");
+        cy.get('button[title="Submit"]').click();
+        cy.get('.mb40 > :nth-child(3)').should('have.text', "Your enquiry has been successfully sent to the store owner!")
+        console.log("Test has been completed!")
+    })
+})
+```
+The console.log instruction will most likely happen before all the cy instructions.
