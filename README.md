@@ -74,6 +74,12 @@ You can check this [topic](https://docs.cypress.io/guides/references/best-practi
 ### Usefull chrome extension
 [Ranorex Selocity](https://chromewebstore.google.com/detail/ranorex-selocity/ocgghcnnjekfpbmafindjmijdpopafoe) can be usefull to find the simpliest css selector. It can also be used to find element through xpath.<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/e8c9c175-af1f-45b3-ab1e-300d4d3887f7)
 
+## Assertions
+
+The assertions on Cypress are handled through the chai library.<br/>
+Chai has several interfaces that allow the developer to choose the most comfortable. The chain-capable BDD styles provide an expressive language & readable style, while the TDD assert style provides a more classical feel.<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/e2650f46-bfa1-4116-af03-6ab5ea1b8f69)
+<br/>
+You can visit the [chai website](https://www.chaijs.com/) for more details.
 
 
 
