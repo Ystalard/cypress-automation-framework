@@ -7,7 +7,7 @@ describe("Test Contact Us form via Automation Test Store", () => {
         cy.get('#ContactUsFrm_first_name').type("Jean");
         cy.get('#ContactUsFrm_email').type("Jean.Valjean@email.com");
         cy.get('#ContactUsFrm_enquiry').type("Do you provide international shipping?");
-        cy.get('.col-md-6 > .btn').click();
+        cy.get('button[title="Submit"]').click();
     })
 
     it("Should not be able to submit a successful submission via contact us form as all fields are required", () => {
@@ -16,7 +16,7 @@ describe("Test Contact Us form via Automation Test Store", () => {
         cy.get('#ContactUsFrm_first_name').type("Jean");
         cy.get('#ContactUsFrm_email').type("JeanValjean"); 
         cy.get('#ContactUsFrm_enquiry').type("Do you provide international shipping?");
-        cy.get('.col-md-6 > .btn').click();
+        cy.get('button[title="Submit"]').click();
         cy.xpath('//*[contains(text(), "E-Mail Address does not appear to be valid!")]')
      })
 })  
