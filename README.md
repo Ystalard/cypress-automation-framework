@@ -82,12 +82,26 @@ Chai has several interfaces that allow the developer to choose the most comforta
 <br/>
 You can visit the [chai website](https://www.chaijs.com/) for more details.
 
-## Valid assertion
+### Valid assertion
 ![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/2279999d-572b-47ce-a1cd-701e27410e65)
 
-## Invalid assertion
+### Invalid assertion
 In case of invalid assertion, cypress presents the reason why it did not workd and also point out specifically where the invalid assertion is located in the code.<br/>
 ![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/55958b3c-7752-42f7-b5ae-e6a8fda9cf60)
+
+## Execute all tests in terminal
+1. Go to your git bash terminal
+2. Run this command: `./node_modules/.bin/cypress run`
+   - the tests start to run:<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/27b08e77-a27d-424e-83bc-2074af4803d6)<br/>This window provides the configuration of the test environment such as the web browser where the tests are running, the cypress version, etc...
+   - the test result for one test:<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/e5785c7a-aec9-4b4c-8c13-24e7883bc12d)
+   - the tests end:<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/f070938a-4728-41be-9f17-6193a87f4476)
+<br/><br/>The above command executes the tests headlessly, you won't see them running. You can modify this behaviour by adding the `--headed` option: `./node_modules/.bin/cypress run --headed`<br/>
+All the options available are listed on cypress website documentation [here](https://docs.cypress.io/guides/guides/command-line#Options)
+
+
+
+
+   
 
 
 
