@@ -243,3 +243,19 @@ it("Validate Js confirm box works when clicking cancel", () => {
 });
 ```
 The Cypress log would result as below:<br/>![image](ReadMeImages/CancelConfirmJSBox.PNG)
+
+## How to handle iframe
+By default, Cypress does not handle iframes.
+For instance, you can't select any element in an iframe from Cypress window:<br/>![image](ReadMeImages/iframeUnhandledByCypress.png)<br/>
+Cypress would only provide you the access to the iframe element.
+
+In order to bypass this, it is possible to use a promise to handle the content of the iframe, grab the body of the iframe and wrap it in the cy.wrap method to perform cy press commands on it:
+```
+cy.get('#frame').then($iframe => {
+    const body = $iframe.contents().find('body')
+    cy.wrap(body).as('iframe')
+})
+```
+This bypass will work as Cypress will then be able to use the iframe's body as a usual html element. Still, the snapshot won't display the content of the iframe while performing action on it. So when a test fail on an iframe it can't be handled easily.
+<br/>Below, the 'blank' image while the test still passed:<br/>![image](ReadMeImages/iframeBypassBlank.PNG)<br/>
+> the issue can be found on github [here](https://github.com/cypress-io/cypress/issues/136) and seem not to be taken seriously by Cypress.
