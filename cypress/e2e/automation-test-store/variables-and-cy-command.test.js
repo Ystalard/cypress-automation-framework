@@ -25,7 +25,7 @@ describe('Verifying variables, cypress commands and jquery commands', () => {
         })
     });
 
-    it.only('Validate properties of the Context Us Page', () => {
+    it('Validate properties of the Context Us Page', () => {
         cy.visit('https://automationteststore.com/index.php?rt=content/contact')
 
         //Uses cypress commands and chaining
