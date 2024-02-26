@@ -242,4 +242,4 @@ it("Validate Js confirm box works when clicking cancel", () => {
     cy.get("#confirm-alert-text").contains('You pressed Cancel!')
 });
 ```
-The Cypress log would result as below:![image](ReadMeImages/CancelConfirmJSBox.PNG)
+The Cypress log would result as below:<br/>![image](ReadMeImages/CancelConfirmJSBox.PNG)
