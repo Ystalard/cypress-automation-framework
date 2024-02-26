@@ -158,3 +158,27 @@ cy.get('h1 .maintext').then(($headerText) => {
             expect(headerText).is.eq('Makeup')
         })
 ```
+
+## Invoke and Aliases
+
+### Invoke
+Invoke cypress method will invoke the JQuery method given as parameter:
+`cy.get('.modal').invoke('show')`
+
+### Aliases
+BeforeEach function in cypress is performed before any individual test inside a describe function. In this BeforeEach function, you can define aliases which will then be accessible in each individual tests:
+
+```
+beforeEach(() => {
+    cy.visit("https://automationteststore.com/")
+    cy.get("a[href*='product/category&path=']").contains('Hair Care').click()
+    cy.get("#grid").click()
+    cy.get(".thumbnails.grid .thumbnail").as("productThumbnailGrid")
+})
+
+it('Validate product thumbnail count', () => {
+    cy.get('@productThumbnailGrid').should('have.length', 4)
+})
+```
+
+> Aliases are not necessarly inserted in BeforeEach function.
