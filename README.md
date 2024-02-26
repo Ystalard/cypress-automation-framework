@@ -200,3 +200,18 @@ describe("Cypress web security", () => {
     });
 })
 ```
+
+## Browser navigation
+### Prevent multiple tabs
+To prevent a button opening a new tab when clicking on it:
+```cy.get("#contact-us").invoke('removeAttr', 'target').click()```
+
+### Go back to previous
+When a button direct to a new page, we might want to go back to the previous page as would do the previous button of the browser:
+```cy.go('back')```
+### Go forward
+```cy.go('forward')```
+### Reload
+reload with cache: `cy.reload()`
+reload without cache: `cy.reload(true)`
+
