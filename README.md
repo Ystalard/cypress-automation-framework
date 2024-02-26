@@ -182,3 +182,21 @@ it('Validate product thumbnail count', () => {
 ```
 
 > Aliases are not necessarly inserted in BeforeEach function.
+
+## Security restriction
+Cypress prevent access to a page from a different domain in a single test. it is not possible to visit site of different domains.
+For instance, both test codes won't work:
+```
+describe("Cypress web security", () => {
+    it("Validate visiting two different domains", () => {
+        cy.visit("https://www.webdriveruniversity.com/")
+        cy.visit("https://automationteststore.com/")
+    });
+
+    it.only("validate visiting two different domains via user action", () => {
+        cy.visit("https://www.webdriveruniversity.com/")
+        cy.get("#automation-test-store").invoke("removeAttr", "target").click() // click on a button which redirect to https://automationteststore.com/
+        cy.contains('#ContactUsFrm', 'Contact Us Form').find('#field_11').should('contain', 'First name')
+    });
+})
+```
