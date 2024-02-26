@@ -136,3 +136,25 @@ describe('Inspect Automation Test Store items using chain of commands', () => {
 })
 ```
 In the above code sample, the console.log command is handled correctly as it is inserted in the callback function of then method.
+
+## Variables, commands and promises
+### Bad practice
+Variables should never used to perform cy commands as the order of action can't be certain. 
+Instance of a bad practice:
+```
+const makeupLink = cy.get("a[href*='product/category&path=']").contains('Makeup')
+const skincareLink = cy.get("a[href*='product/category&path=']").contains('Skincare')
+skincareLink.click()
+makeupLink.click()
+```
+
+### Good practice
+A variable should not be used to perform cy commands, when it is used it should only to get information. It must also be used through a promise to ensure the element is still accessible.
+For instance:
+```
+cy.get('h1 .maintext').then(($headerText) => {
+            const headerText = $headerText.text()
+            cy.log("Found header text: " + headerText)
+            expect(headerText).is.eq('Makeup')
+        })
+```
