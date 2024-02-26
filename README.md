@@ -215,3 +215,31 @@ When a button direct to a new page, we might want to go back to the previous pag
 reload with cache: `cy.reload()`
 reload without cache: `cy.reload(true)`
 
+## Handling event
+For further details upon events see the Cypress documentation is [here](https://docs.cypress.io/api/cypress-api/catalog-of-events#Event-Types).
+
+### Js Alert box 
+Cypress automatically accept alert event. It still possible to handle them.
+For instance, we can assert it contains a certain string:
+```
+cy.on('window:alert', (str) => {
+    expect(str).to.equal('I am an alert box!')
+})
+```
+
+### Js Confirm box
+```
+it("Validate Js confirm box works when clicking cancel", () => {
+    cy.visit("https://www.webdriveruniversity.com")
+    cy.get("#popup-alerts").invoke('removeAttr', 'target').click()
+    
+    cy.get("#button4").click()
+
+    cy.on('window:confirm', (str) => {
+        return false; // Cancel the confirm box
+    })
+
+    cy.get("#confirm-alert-text").contains('You pressed Cancel!')
+});
+```
+The Cypress log would result as below:![image](ReadMeImages/CancelConfirmJSBox.PNG)
