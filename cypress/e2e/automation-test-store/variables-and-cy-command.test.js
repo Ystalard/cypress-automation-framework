@@ -7,6 +7,6 @@ describe('Verifying variables, cypress commands and jquery commands', () => {
         // const skincareLink = cy.get("a[href*='product/category&path=']").contains('Skincare')
         // skincareLink.click()
         // makeupLink.click()
-        
+        cy.get("a[href*='product/category&path=']").contains('Makeup').click()
     })
 })
