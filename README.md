@@ -331,3 +331,54 @@ it('selects the Avacado option', () => {
 });
 ``` 
 
+## Mouse actions
+the cypress documentation on mouse events is [here](https://docs.cypress.io/api/commands/trigger#Mouse-Events)
+### scrolling to get the element into the viewport
+```
+cy.get('#actions').scrollIntoView()
+```
+### click, double click
+```
+cy.get('#idElement').dblclick()
+cy.get('#idElement').click()
+```
+
+### elements displayed only according to css pseudo-class
+Sometimes, an element switches from `display: none` to `display: block` only according to css pseudo class of another element.
+For instance:<br/>
+html:<br/>
+```
+<div class=toBeHovered>
+    <div class=hiddenByDefault>
+        Hello !
+    </div>
+</div>
+```
+css:<br/>
+```
+.hiddenByDefault {
+    display: none;
+}
+
+toBeHovered:hover .hiddenByDefault {
+    display: block;
+}
+```
+
+In this case, the usual `cy.trigger('mouseover')` won't work as it is not a real mouseover but a trigger of the js *mouseover* event.<br/>Thanks to [*Chrome Devtools Protocol*](https://chromedevtools.github.io/devtools-protocol/) you can fix it for any _chromium-based browser_ by installing a cypress plugin:<br/>
+```
+npm install cypress-real-events
+```
+> it won't work for firefox test !
+
+Then import it on the e2e.js file:<br/>
+```
+import "cypress-real-events";
+```
+this feature should be used the less possible as not a built-in cypress solution, there won't be snashots on the cypress UI. In the image below you can see the assertion is validated while the snapshot does not display the element:<br/>![image](ReadMeImages/realHoverWorkAround.PNG)
+<br/>
+<br/>
+Another workaround is to force the action even if the element is hidden: 
+```
+cy.get(HiddenElement).click({force:true})
+```
