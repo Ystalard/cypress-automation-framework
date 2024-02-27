@@ -259,3 +259,28 @@ cy.get('#frame').then($iframe => {
 This bypass will work as Cypress will then be able to use the iframe's body as a usual html element. Still, the snapshot won't display the content of the iframe while performing action on it. So when a test fail on an iframe it can't be handled easily.
 <br/>Below, the 'blank' image while the test still passed:<br/>![image](ReadMeImages/iframeBypassBlank.PNG)<br/>
 > the issue can be found on github [here](https://github.com/cypress-io/cypress/issues/136) and seem not to be taken seriously by Cypress.
+
+## Checkboxes and radiobutton
+### Check one or first
+```
+cy.get('[type="checkbox"]').check() // Check checkbox element
+cy.get('[type="radio"]').first().check() // Check first radio element
+```
+### Check multiple and specific ones from value
+below checkboxes:
+```
+<form>
+  <input type="checkbox" id="subscribe" value="subscribe" />
+  <label for="subscribe">Subscribe to newsletter?</label>
+  <input type="checkbox" id="acceptTerms" value="accept" />
+  <label for="acceptTerms">Accept terms and conditions.</label>
+</form>
+```
+
+Can be checked by value as below:
+```
+cy.get('form input').check(['subscribe', 'accept'])
+```
+### Check radiobutton is disabled
+`cy.get('#radio-buttons-selected-disabled input[type="radio"][value="cabbage"]').should('be.disabled')`
+
