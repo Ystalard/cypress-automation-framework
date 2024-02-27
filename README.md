@@ -282,5 +282,31 @@ Can be checked by value as below:
 cy.get('form input').check(['subscribe', 'accept'])
 ```
 ### Check radiobutton is disabled
-`cy.get('#radio-buttons-selected-disabled input[type="radio"][value="cabbage"]').should('be.disabled')`
+```
+cy.get('#radio-buttons-selected-disabled input[type="radio"][value="cabbage"]').should('be.disabled')
+```
+
+## DropdownList
+They can be selected through their value or their visible content through the same method.
+Let take this html element for instance:
+```
+<select class="dropdown-menu-lists" id="dropdowm-menu-1">
+    <option value="java">JAVA</option>
+    <option value="c#">C#</option>
+    <option value="valuepython">Python</option>
+    <option value="sql">SQL</option>
+</select>
+```
+### By value
+```
+cy.get('#dropdowm-menu-1').select('valuepython')
+```
+### By visible text
+```
+cy.get('#dropdowm-menu-1').select('Python')
+```
+### Assert an option is selected
+```
+cy.get('#dropdowm-menu-2').select('java').should('have.value', 'testng')
+```
 
