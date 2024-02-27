@@ -72,7 +72,8 @@ It is way recommended to create a specific attribute on the elements during the 
 You can check this [topic](https://docs.cypress.io/guides/references/best-practices#Selecting-Elements) to be convinced.<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/3535d25c-0d64-4d00-b813-56b9a9bfe9a3)
 
 ### Usefull chrome extension
-[Ranorex Selocity](https://chromewebstore.google.com/detail/ranorex-selocity/ocgghcnnjekfpbmafindjmijdpopafoe) can be usefull to find the simpliest css selector. It can also be used to find element through xpath.<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/e8c9c175-af1f-45b3-ab1e-300d4d3887f7)
+[Ranorex Selocity](https://chromewebstore.google.com/detail/ranorex-selocity/ocgghcnnjekfpbmafindjmijdpopafoe) can be usefull to find the simpliest css selector. It can also be used to find element through xpath.<br/>![image](https://github.com/Ystalard/cypress-automation-framework/assets/58308727/e8c9c175-af1f-45b3-ab1e-300d4d3887f7)<br/>
+![image](./ReadMeImages/ranorexUseCaseSample.png)
 
 ## Assertions
 
@@ -309,4 +310,24 @@ cy.get('#dropdowm-menu-1').select('Python')
 ```
 cy.get('#dropdowm-menu-2').select('java').should('have.value', 'testng')
 ```
+
+## Autocomplete dropdownlist
+### preview
+![image](./ReadMeImages/autoCompleteDDL.PNG)<br/>
+### objective
+- insert *a* in the field
+- select *Avacado*
+
+### cypress individual test code sample
+```
+it('selects the Avacado option', () => {
+    cy.get('#myInput').type('A')
+    cy.get('#myInputautocomplete-list > div').each(($el) => {
+        if($el.text() === 'Avacado') {
+            cy.wrap($el).click() // or use directly jquery => $el.trigger('click') 
+        }
+    })
+    cy.get('#submit-button').click()
+});
+``` 
 
