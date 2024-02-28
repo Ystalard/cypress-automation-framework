@@ -382,3 +382,22 @@ Another workaround is to force the action even if the element is hidden:
 ```
 cy.get(HiddenElement).click({force:true})
 ```
+
+## Elements traversal
+it is possible to traverse the DOM elements:
+- [children()](https://docs.cypress.io/api/commands/children#Selector)
+- [closest()](https://docs.cypress.io/api/commands/closest#Find-the-closest-element-of-the-error-with-the-class-banner)
+- [eq()](https://docs.cypress.io/api/commands/eq#Make-an-assertion-on-the-3rd-row-of-a-table)
+- [filter()](https://docs.cypress.io/api/commands/filter#Filter-by-text)
+- [find()](https://docs.cypress.io/api/commands/find#Get-lis-within-parent)
+- [first()](https://docs.cypress.io/api/commands/first#Get-the-first-list-item-in-a-list)
+- [last()](https://docs.cypress.io/api/commands/last#Get-the-last-list-item-in-a-list)
+- [nextAll()](https://docs.cypress.io/api/commands/nextAll#Find-all-of-the-elements-siblings-following-second)
+- [nextUntil()](https://docs.cypress.io/api/commands/nextUntil#Find-all-of-the-elements-siblings-following-veggies-until-nuts)
+- [not()](https://docs.cypress.io/api/commands/not#Yield-the-elements-that-do-not-have-class-active)
+- [parent()](https://docs.cypress.io/api/commands/parent#Get-the-parent-with-class-sub-nav-of-all-li-elements)
+- [parents()](https://docs.cypress.io/api/commands/parents#Get-the-parents-of-the-active-li)
+- [prev()](https://docs.cypress.io/api/commands/prev#Find-the-previous-element-of-the-element-with-class-of-active)
+- [prevAll()](https://docs.cypress.io/api/commands/prevAll#Find-all-of-the-elements-siblings-before-third)
+- [prevUntil()](https://docs.cypress.io/api/commands/prevUntil#Find-all-of-the-elements-siblings-before-nuts-until-veggies)
+- [siblings()](https://docs.cypress.io/api/commands/siblings#Get-the-siblings-of-each-li)
