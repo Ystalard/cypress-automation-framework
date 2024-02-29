@@ -498,3 +498,42 @@ it("uploads a file", () => {
 
 ### Test result
 ![image](ReadMeImages/UploadTestResult.PNG)
+
+### Test structures through hooks
+- before(): runs once before all tests in the block
+- beforeEach(): runs before each test in the block
+- afterEach(): runs after each test in the block
+- after(): runs once after all tests in the block
+
+### Instance
+In the below cypress *hooks* test, two individual tests are running with all above hooks defined with some logs:
+```
+describe('hooks', () => {
+    before(() => {
+        cy.log('runs once before all tests in the block')
+    });
+
+    after(() => {
+        cy.log('runs once after all tests in the block')
+    });
+
+    beforeEach(() => {
+        cy.log('runs before each test in the block')
+    });
+
+    afterEach(() => {
+        cy.log('runs after each test in the block')
+    });
+
+    it('Exemple test 1', () => {
+        cy.log('Exemple test 1')
+    });
+
+    it('Exemple test 2', () => {
+        cy.log('Exemple test 2')
+    });
+});
+```
+
+It results as expected in the cypress log panel:<br/>
+![image](ReadMeImages/Hooks.png)
