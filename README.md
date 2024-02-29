@@ -401,3 +401,71 @@ it is possible to traverse the DOM elements:
 - [prevAll()](https://docs.cypress.io/api/commands/prevAll#Find-all-of-the-elements-siblings-before-third)
 - [prevUntil()](https://docs.cypress.io/api/commands/prevUntil#Find-all-of-the-elements-siblings-before-nuts-until-veggies)
 - [siblings()](https://docs.cypress.io/api/commands/siblings#Get-the-siblings-of-each-li)
+
+## Asynchronous drawback
+As Cypress is asynchronous, loops must be prohibited as any cypress command inside might not be executed in the expected order.
+
+### Loop does not work
+```
+function goToYearsPanel() {
+    goToMonthsPanel()
+    cy.get('@monthsPanelHeader').click()
+    cy.get('@yearsPanel').should('be.visible').then(() => {                
+       do 
+        {
+            IsCorrectYearPanel = true
+            cy.get('@yearsPanel').first().then($year => {
+                if(futureYear < Number($year.text()))
+                {
+                    cy.log("Selecting previous years panel: first year " + $year.text() + " > " + futureYear)
+                    IsCorrectYearPanel = false
+                    selectPreviousYearsPanel()
+                }
+            })
+            
+            cy.get('@yearsPanel').last().then($year => {
+                if(futureYear > Number($year.text()))
+                {
+                    cy.log("Selecting next years panel: last year " + $year.text() + " < " + futureYear)
+                    IsCorrectYearPanel = false
+                    selectNextYearsPanel()
+                }
+            })
+        } while (!IsCorrectYearPanel);                 
+    })
+}
+```
+The above code won't work as expected. IsCorrectYearPanel would be check true and so go out of the loop before it is set false in one of the `then()` promise.
+
+### Best practice
+The use of recursive functions must be chosen instead:
+```
+function goToYearsPanel() {
+    goToMonthsPanel()
+    cy.get('@monthsPanelHeader').click()
+    cy.get('@yearsPanel').should('be.visible').then(() => {                
+        BrowseToCorrectYearsPanel()                
+    })
+}
+
+function BrowseToCorrectYearsPanel()
+{
+    cy.get('@yearsPanel').first().then($year => {
+        if(futureYear < Number($year.text()))
+        {
+            cy.log("Selecting previous years panel: first year " + $year.text() + " > " + futureYear)
+            selectPreviousYearsPanel()
+            BrowseToCorrectYearsPanel()
+        }
+    })
+    
+    cy.get('@yearsPanel').last().then($year => {
+        if(futureYear > Number($year.text()))
+        {
+            cy.log("Selecting next years panel: last year " + $year.text() + " < " + futureYear)
+            selectNextYearsPanel()
+            BrowseToCorrectYearsPanel()
+        }
+    })
+}
+```
