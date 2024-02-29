@@ -1,5 +1,8 @@
 {
-  "name": "Using fixtures to represent data",
-  "email": "hello@cypress.io",
-  "body": "Fixtures are a great way to mock data for responses to routes"
+  "name": "Jean",
+  "last_name": "Valjean",
+  "email": "Jean.Valjean@email.com",
+  "description": "I am a character from Les Miserables",
+  "messageValidation": "Thank You for your Message!",
+  "messageErrorValidation": "Error: all fields are required"
 }

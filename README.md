@@ -537,3 +537,95 @@ describe('hooks', () => {
 
 It results as expected in the cypress log panel:<br/>
 ![image](ReadMeImages/Hooks.png)
+
+## Fixtures
+Cypress can play with external data through the `fixtures()` method. This can be used to split the test process and the data which drives the test.
+For instance, when testing the submission of a form with multiple input from the user. It is better to split the user inputs to the process consisting in typing all the inputs and submit the form.
+
+### Test without fixtures
+```
+it("Should be able to submit a successful submission via contact us form", () => {
+    cy.get('[name="first_name"]').type("Jean")
+    cy.get('[name="last_name"]').type("Valjean")
+    cy.get('[name="email"]').type("Jean.Valjean@email.com")
+    cy.get('textarea.feedback-input').type("I am a character from Les Miserables")
+    
+    cy.get('[type="submit"]').click()
+
+    cy.get('h1').should('have.text','Thank You for your Message!')
+});
+```
+### Test with fixtures
+Let create a file in cypress/fixtures folder called example.json:
+```
+{
+  "name": "Jean",
+  "last_name": "Valjean",
+  "email": "Jean.Valjean@email.com",
+  "description": "I am a character from Les Miserables"
+}
+```
+#### reference the file in the test
+```
+before(() => {
+    cy.fixture('example').then(function(data){
+        globalThis.data = data
+    })
+});
+```
+
+#### use the data
+```
+it("Should be able to submit a successful submission via contact us form", () => {
+    cy.get('[name="first_name"]').type(data.name)
+    cy.get('[name="last_name"]').type(data.last_name)
+    cy.get('[name="email"]').type(data.email)
+    cy.get('textarea.feedback-input').type(data.description)
+    cy.get('[type="submit"]').click()
+    cy.get('h1').should('have.text',data.messageValidation)
+});
+```
+Now, the data are seperated from the process. It can be updated without changing the test. 
+> As you might noticed: the data is added through the `before()` hook. It is then added for all the `it()` individual test of a `describe()` global test.
+> As you might noticed: the extension of example.json file wasn't provided nor the fullpath. By default, cypress look into its cypress/fixtures folder. The extension file can be ommited as long as it follows the [cypress fixture file's extension expected order](https://docs.cypress.io/api/commands/fixture#Omit-the-fixture-files-extension).
+
+### Clarify fixtures use with aliases
+It is recommended to split the data in as many file as there are tests, but also split them according to their meaning.
+In the below example, two json files were created:
+1. To store user input
+2. To store message returned by the application used to validate the test
+
+The fixtures' reference can be simplified through aliases:
+```
+beforeEach(() => {
+    cy.fixture('userDetails').as('user')
+    cy.fixture('enquiryValidation').as('enquiryValidation')
+    cy.fixture('log').as('log')
+});
+```
+
+And then called from those aliases:
+```
+it.only("Should be able to submit a successful submission via contact us form", () => {
+    cy.get('@user').then((user) => {
+        cy.get('#ContactUsFrm_first_name').type(user.first_name);
+        cy.get('#ContactUsFrm_email').type(user.email);
+        cy.get('#ContactUsFrm_enquiry').type(user.enquiry);
+    })
+
+    cy.get('#ContactUsFrm_email').should('have.attr', 'name', 'email')
+    cy.get('button[title="Submit"]').click();
+
+    cy.get('@enquiryValidation').then((expect) => {
+        cy.get('.mb40 > :nth-child(3)').should('have.text', expect.enquiryValidated)
+    })
+
+    cy.get('@log').then((log) => {
+        cy.log(log.itComplete)
+    })
+})
+```
+
+> fixtures were added in the `beforeEach()` hook instead of `before()`. __An alias gets removed after the end of each `it()` test !__
+
+
