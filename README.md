@@ -644,3 +644,8 @@ cy.login('email', 'password')
 Cypress.Commands.overwrite('visit', (orig, url, options) => {})
 ```
 
+## Cypress configuration
+Cypress' configurations are stored in *cypress.config.js*.
+You can see the current configuration setup directly from *Settings* menu. Also, clicking on the edit button (see below image) would redirect you to the *cypress.config.js*
+![image](ReadMeImages/cypressConfiguration.PNG)<br/>
+> see [cypress documentation](https://docs.cypress.io/guides/references/configuration) for more details upon configuration.
