@@ -469,3 +469,32 @@ function BrowseToCorrectYearsPanel()
     })
 }
 ```
+
+## Upload a file
+### Display of an upload component
+![image](ReadMeImages/UploadFile.PNG)<br/>
+
+### Html description
+```
+<form>
+    <h2>Please choose a file to upload:</h2>
+    <input type="file" id="myFile" name="filename">
+    <input type="submit" id="submit-button" onclick="fileSubmitted()">
+</form>
+```
+
+### Test uploading the file
+```
+it("uploads a file", () => {
+    cy.get("#myFile").selectFile('cypress/fixtures/laptop.png')
+    cy.get("#submit-button").click()    
+    
+    //modify the alert event triggered on upload to validate the upload
+    cy.on('window:alert', (str) => {
+        expect(str).to.equal('Your file has now been uploaded!')
+    })
+});
+```
+
+### Test result
+![image](ReadMeImages/UploadTestResult.PNG)
