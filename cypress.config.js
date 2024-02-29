@@ -10,7 +10,9 @@ module.exports = defineConfig({
     env: {
       // set environment variables
       hideXHRInCommandLog: "true",
-      first_name: "Jean"
+      first_name: "Jean",
+      webdriveruniversityBaseUrl: "https://www.webdriveruniversity.com/",
+      automationTestStoreBaseUrl: "https://www.automationteststore.com/"
     },
   }
 });

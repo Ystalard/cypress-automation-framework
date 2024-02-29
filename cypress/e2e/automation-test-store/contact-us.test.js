@@ -2,7 +2,7 @@
 
 describe("Test Contact Us form via Automation Test Store", () => {
     beforeEach(() => {
-        cy.visit("https://automationteststore.com/"); 
+        cy.visit(Cypress.env('automationTestStoreBaseUrl')); 
         cy.xpath('//a[contains(@href, "contact") and starts-with(text(), "Con")]').click();
         cy.fixture('userDetails').as('user')
         cy.fixture('enquiryValidation').as('enquiryValidation')

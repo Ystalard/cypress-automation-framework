@@ -2,7 +2,7 @@
 
 describe("Test fileupload via webdriveruni", () => {
     beforeEach(() => {
-        cy.visit("https://www.webdriveruniversity.com")
+        cy.visit(Cypress.env('webdriveruniversityBaseUrl'))
         cy.get("#file-upload").invoke('removeAttr', 'target').click()
     });
 

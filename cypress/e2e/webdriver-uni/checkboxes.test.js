@@ -1,6 +1,6 @@
 describe('how to handle checkboxes', () => {
     beforeEach(() => {
-        cy.visit('https://www.webdriveruniversity.com')
+        cy.visit(Cypress.env('webdriveruniversityBaseUrl'))
         cy.get('#dropdown-checkboxes-radiobuttons').invoke('removeAttr', 'target').click({force:true})
     })
 

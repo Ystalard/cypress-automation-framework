@@ -2,7 +2,7 @@
 
 describe('Verifying variables, cypress commands and jquery commands', () => {
     it('Navigating to specific product pages', () => {
-        cy.visit("https://automationteststore.com/")
+        cy.visit(Cypress.env('automationTestStoreBaseUrl'))
         // const makeupLink = cy.get("a[href*='product/category&path=']").contains('Makeup')
         // const skincareLink = cy.get("a[href*='product/category&path=']").contains('Skincare')
         // skincareLink.click()
@@ -11,7 +11,7 @@ describe('Verifying variables, cypress commands and jquery commands', () => {
     })
 
     it('Navigation to specific product pages', () => {
-        cy.visit("https://automationteststore.com/")
+        cy.visit(Cypress.env('automationTestStoreBaseUrl'))
         cy.get("a[href*='product/category&path=']").contains('Makeup').click()
 
         //following code will fail

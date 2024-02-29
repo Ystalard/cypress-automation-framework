@@ -8,7 +8,7 @@ describe("Test Contact Us form via WebdriverUni", () => {
     });
 
     beforeEach(() => {
-        cy.visit("https://www.webdriveruniversity.com")
+        cy.visit(Cypress.env('webdriveruniversityBaseUrl'))
         cy.get("#contact-us").invoke('removeAttr', 'target').click()
         cy.document().should('have.property', 'charset').and('eq', 'UTF-8')
         cy.title().should('include', 'WebDriver | Contact Us')

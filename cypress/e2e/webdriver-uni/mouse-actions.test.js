@@ -1,6 +1,6 @@
 describe('how to handle mouse events', () => {
     beforeEach(() => {
-        cy.visit('https://www.webdriveruniversity.com')
+        cy.visit(Cypress.env('webdriveruniversityBaseUrl'))
         cy.get('#actions').scrollIntoView().invoke('removeAttr', 'target').click({force:true})
     });
 
@@ -19,25 +19,27 @@ describe('how to handle mouse events', () => {
         })
     });
 
-    it.only('overs element then click on ddl\'s option through cypress real event', () => {
+    it('overs element then click on ddl\'s option through cypress real event', () => {
         cy.on('window:alert', (str) => {
             expect(str).to.equal('Well done you clicked on the link!')
         })
 
         cy.get('#div-hover .dropdown').each(($el, index) => {
-            cy.wrap($el).realHover() //chrome only
+            // cy.wrap($el).realHover() //chrome only
             if(index != 2)
             {
-                cy.wrap($el).find('.dropdown-content a').click()
+                cy.wrap($el).find('.dropdown-content a').click({force:true})
+                // cy.wrap($el).find('.dropdown-content a').click() // chrome only
             }
             else
             {
-                cy.wrap($el).find('.dropdown-content a').eq(1).click()
+                cy.wrap($el).find('.dropdown-content a').eq(1).click({force:true})
+                // cy.wrap($el).find('.dropdown-content a').eq(1).click() // chrome only
             }           
         })
     })
 
-    it.only('overs element then click on ddl\'s option through cypress built-in solution', () => {
+    it('overs element then click on ddl\'s option through cypress built-in solution', () => {
         cy.on('window:alert', (str) => {
             expect(str).to.equal('Well done you clicked on the link!')
         })

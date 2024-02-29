@@ -2,14 +2,14 @@
 
 describe('Alias and Invoke', () => {
     beforeEach(() => {
-        cy.visit("https://automationteststore.com/")
+        cy.visit(Cypress.env('automationTestStoreBaseUrl'))
         cy.get("a[href*='product/category&path=']").contains('Skincare').click()
         cy.get("#grid").click()
         cy.get(".thumbnails.grid .thumbnail").as("productThumbnailGrid")
     })
 
     it('Validate a specific skin care product', () => {
-        cy.visit("https://automationteststore.com/")
+        cy.visit(Cypress.env('automationTestStoreBaseUrl'))
         cy.get("a[href*='product/category&path=']").contains('Skincare').click()
         cy.get(".fixed_wrapper .prdocutname").eq(0).invoke('text').as('productThumbnail')
         cy.get('@productThumbnail').its('length').should('be.gt', 5)
@@ -33,7 +33,7 @@ describe('Alias and Invoke', () => {
     })
 
     it.only('Calculate total of normal and sale products', () => {
-        cy.visit("https://automationteststore.com/");
+        cy.visit(Cypress.env('automationTestStoreBaseUrl'));
         
         cy.get('.thumbnail').find('.oneprice').invoke('text').as('itemPrice')
         cy.get('.thumbnail').find('.pricenew').invoke('text').as('saleItemPrice')

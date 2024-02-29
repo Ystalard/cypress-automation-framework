@@ -1,6 +1,6 @@
 describe('how to handle autocomplete ddl', () => {
     beforeEach(() => {
-        cy.visit('https://www.webdriveruniversity.com')
+        cy.visit(Cypress.env('webdriveruniversityBaseUrl'))
         cy.get('#autocomplete-textfield').invoke('removeAttr', 'target').click({force:true})
     });
 
