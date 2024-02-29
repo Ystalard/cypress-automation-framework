@@ -16,21 +16,13 @@ describe("Test Contact Us form via WebdriverUni", () => {
     });
     
     it("Should be able to submit a successful submission via contact us form", () => {
-        cy.get('[name="first_name"]').type(data.name)
-        cy.get('[name="last_name"]').type(data.last_name)
-        cy.get('[name="email"]').type(data.email)
-        cy.get('textarea.feedback-input').type(data.description)
-        cy.get('[type="submit"]').click()
+        cy.SubmitContactUsForm_webdriveruni(data.name, data.last_name, data.email, data.description)
         cy.get('h1').should('have.text',data.messageValidation)
     });
 
     it("Should not be able to submit a successful submission via contact us form as all fields are required", () => {
         
-        cy.get('[name="first_name"]').type(data.name)
-        cy.get('[name="last_name"]').type(data.last_name)
-        cy.get('[name="email"]').type(data.email)
-        
-        cy.get('[type="submit"]').click()
+        cy.SubmitContactUsForm_webdriveruni(data.name, data.last_name, data.email, "")
         cy.get('body').should('include.text',data.messageErrorValidation)
     });
 })

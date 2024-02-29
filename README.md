@@ -628,4 +628,19 @@ it.only("Should be able to submit a successful submission via contact us form", 
 
 > fixtures were added in the `beforeEach()` hook instead of `before()`. __An alias gets removed after the end of each `it()` test !__
 
+## Custom commands
+Cypress allows to custom ower own cypress command or even overwrite existing ones. These custom or overwritten commands are usually setup in the *cypress/support/command.js* file.
+Any custom commands can be added in another js file as long as this file is imported in cypress/support/e2e.js file.
+### Add a custom command
+```
+Cypress.Commands.add('login', (email, pw) => {})
+```
+### Use a custom command
+```
+cy.login('email', 'password')
+```
+### overwrite existing command
+```
+Cypress.Commands.overwrite('visit', (orig, url, options) => {})
+```
 
