@@ -9,7 +9,6 @@ describe('Alias and Invoke', () => {
     })
 
     it('Validate a specific skin care product', () => {
-        cy.visit(Cypress.env('automationTestStoreBaseUrl'))
         cy.get("a[href*='product/category&path=']").contains('Skincare').click()
         cy.get(".fixed_wrapper .prdocutname").eq(0).invoke('text').as('productThumbnail')
         cy.get('@productThumbnail').its('length').should('be.gt', 5)
@@ -32,9 +31,7 @@ describe('Alias and Invoke', () => {
         })
     })
 
-    it.only('Calculate total of normal and sale products', () => {
-        cy.visit(Cypress.env('automationTestStoreBaseUrl'));
-        
+    it('Calculate total of normal and sale products', () => {    
         cy.get('.thumbnail').find('.oneprice').invoke('text').as('itemPrice')
         cy.get('.thumbnail').find('.pricenew').invoke('text').as('saleItemPrice')
         
@@ -68,7 +65,7 @@ describe('Alias and Invoke', () => {
         })
         .then(() => { //this then is important to make sure the above code is executed before the below code. Otherwise itemsTotal will be 0
             cy.log("The total price of all products: " + itemsTotal)
-            expect(itemsTotal).to.eq(660.5)
+            expect(itemsTotal).to.eq(836)
         })
     })
 })

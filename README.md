@@ -644,6 +644,37 @@ cy.login('email', 'password')
 Cypress.Commands.overwrite('visit', (orig, url, options) => {})
 ```
 
+Custom commands should not be used everywhere. Any custom command is available all over the automated tests.
+It is prefered to use page object modelling to restrict the use of method to a specific page.
+
+## Page Object Modelling
+It consists in isolating some feature for a specific page.
+Let consider the previous login custom command can only be used in a login page. Then it is prefered to create a *cypress/support/pageObjects/yourWebsite/loginPage.js* file:
+```
+class loginPage_PO {
+    login(email, pw) {
+        //do your cypress commands to login
+    }
+}
+export default loginPage_PO;
+```
+
+> _PO for PageObject
+
+Then in your test file you can import the file and use the class:
+```
+import loginPage_PO from "../../support/pageObjects/yourWebsite/loginPage";
+
+Describe("how login page should behave", () => {
+    it("should be able to login", () => {
+        const loginPage_PO = new loginPage_PO()
+        loginPage_PO.login('emails','pwd')
+    })
+})
+```
+
+This way you make a dissociation between a test and a page. Therefore, a test can handle more than a page and a page can be used in multiple tests without repeating the code.
+
 ## Cypress configuration
 Cypress' configurations are stored in *cypress.config.js*.
 You can see the current configuration setup directly from *Settings* menu. Also, clicking on the edit button (see below image) would redirect you to the *cypress.config.js*
