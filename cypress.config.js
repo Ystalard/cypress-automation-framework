@@ -9,7 +9,8 @@ module.exports = defineConfig({
     excludeSpecPattern: "cypress/e2e/other/*.js",
     env: {
       // set environment variables
-      hideXHRInCommandLog: "true"
+      hideXHRInCommandLog: "true",
+      first_name: "Jean"
     },
   }
 });

@@ -16,7 +16,7 @@ describe("Test Contact Us form via WebdriverUni", () => {
     });
     
     it("Should be able to submit a successful submission via contact us form", () => {
-        cy.SubmitContactUsForm_webdriveruni(data.name, data.last_name, data.email, data.description)
+        cy.SubmitContactUsForm_webdriveruni(Cypress.env('first_name'), data.last_name, data.email, data.description)        
         cy.get('h1').should('have.text',data.messageValidation)
     });
 
