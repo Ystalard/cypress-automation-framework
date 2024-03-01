@@ -12,6 +12,10 @@ module.exports = defineConfig({
     screenshotOnRunFailure: true,
     trashAssetsBeforeRuns: true,
     video: false,
+    reporter: 'cypress-multi-reporters',
+    reporterOptions: {
+      configFile: 'reporter-config.json',
+    },
     env: {
       // set environment variables
       hideXHRInCommandLog: "true",

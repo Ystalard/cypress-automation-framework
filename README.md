@@ -860,6 +860,78 @@ Which can then be executed by running them on npm command line:
 npm run triggerAllTests-headless
 ```
 
+## Reporting
+
+### JUnit reporter
+```
+npm install --save-dev cypress-multi-reporters mocha-junit-reporter
+```
+for more details, see the report page on cypress [here](https://docs.cypress.io/guides/tooling/reporters#Multiple-reporters) to setup the reporte.
+It will provides xml file for each test which can then be used in CI pipelines.
+For instance of what these xml file can contain:
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="2.578" tests="2" failures="0">
+  <testsuite name="Root Suite" timestamp="2024-03-01T16:29:11" tests="0" file="cypress\e2e\webdriver-uni\data-tables.test.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="handling data via webdriveruni" timestamp="2024-03-01T16:29:11" tests="2" time="2.563" failures="0">
+    <testcase name="handling data via webdriveruni calculates and asserts the total age of all users" time="0.729" classname="calculates and asserts the total age of all users">
+    </testcase>
+    <testcase name="handling data via webdriveruni asserts the age of a user in the table" time="0.274" classname="asserts the age of a user in the table">
+    </testcase>
+  </testsuite>
+</testsuites>
+```
+
+> to merge the xml files: `npx junit-merge -d cypress/results/junit -o cypress/results/junit/results.xml`
+
+### Mochawesome
+Same thing but it reports in json file and can generate automaticallly a html file from them.
+
+To install the plugin:
+```
+npm install --save-dev mochawesome mochawesome-merge mochawesome-report-generator
+```
+
+reported-config.json file:
+```
+{
+    "reporterEnabled": "spec, cypress-multi-reporters",
+    "mochaJunitReporterReporterOptions": {
+        "mochaFile": "cypress/results/junit/results-[hash].xml"
+    },
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/results/mochawesome",
+            "quite": true,
+            "overwrite": false,
+            "html": false,
+            "json": true
+        }
+    }
+}
+```
+
+cypress.config.js:
+```
+e2e: {
+reporter: 'cypress-multi-reporters',
+    reporterOptions: {
+        configFile: 'reporter-config.json',
+    }
+}
+```
+
+Then executing the `npx cypress run` will also generate the json files to the directory given in *reported-config.json* file
+
+to merge the json generated and generate the html report:
+```
+npx mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && npx marge mochawesome.json
+```
+
+The html report is generated at *mochawesome-report/assets/mochawesome.html* and look like this:<br/>
+![image](ReadMeImages/MochawesomeReport.PNG)
 
 
 
