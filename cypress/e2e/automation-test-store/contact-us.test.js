@@ -1,6 +1,10 @@
 /// <reference types="cypress" />
 
 describe("Test Contact Us form via Automation Test Store", () => {
+    before(() => {
+        cy.viewport(550, 750)
+    })
+
     beforeEach(() => {
         cy.visit(Cypress.env('automationTestStoreBaseUrl')); 
         cy.xpath('//a[contains(@href, "contact") and starts-with(text(), "Con")]').click();

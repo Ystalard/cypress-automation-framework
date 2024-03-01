@@ -11,6 +11,8 @@ module.exports = defineConfig({
     screenshotOnRunFailure: true,
     trashAssetsBeforeRuns: true,
     video: true,
+    viewportHeight: 1080,
+    viewportWidth: 1920,
     env: {
       // set environment variables
       hideXHRInCommandLog: "true",
