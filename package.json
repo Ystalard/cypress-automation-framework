@@ -10,7 +10,9 @@
     "triggerAllTests-dashboard": "npx cypress run --record --key e3cd061c-16dc-46fb-8b51-3f6d08c3d08e",
     "junit-merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/results.xml",
     "delete-junit-report": "rm -rf cypress/results/junit/results.xml",
-    "delete-results": "rm -rf cypress/results/* || true"
+    "delete-results": "rm -rf cypress/results/* || true",
+    "mochawesome-merge": "npx mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && npx marge mochawesome.json",
+    "delete-mochawesome-report": "rm -rf mochawesome-report/* || true"
   },
   "author": "Nicolas Parisse",
   "license": "ISC",
