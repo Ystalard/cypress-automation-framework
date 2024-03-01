@@ -1,11 +1,23 @@
 class AutoStore_HairCare_PO {
-    addProductToBasket(productName) {
-        cy.get(".fixed_wrapper .prdocutname").each(($el, index, $list) => {
-            if($el.text() === productName) {
-                cy.log($el.text())
-                cy.get('.productcart').eq(index).click();
-            }
+    constructor() {
+        this.setProductNames();
+    }
+
+    setProductNames() {
+        cy.fixture("products").then((data) => {
+            this.products = data;
         });
+    }
+
+    addProductToBasket() {
+        this.products.productName.forEach(function (element) {
+            cy.get(".fixed_wrapper .prdocutname").each(($el, index) => {
+                if($el.text() === element) {
+                    cy.log($el.text())
+                    cy.get('.productcart').eq(index).click();
+                }
+            })
+        })
     }
 }
 

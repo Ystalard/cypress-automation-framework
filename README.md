@@ -647,8 +647,11 @@ Cypress.Commands.overwrite('visit', (orig, url, options) => {})
 Custom commands should not be used everywhere. Any custom command is available all over the automated tests.
 It is prefered to use page object modelling to restrict the use of method to a specific page.
 
-## Page Object Modelling
-It consists in isolating some feature for a specific page.
+## Page Object Modelling (PO modelling)
+It consists in isolating the tests from the pages/routes.
+This way you make a dissociation between a test and a page/route. Therefore, a test can handle more than a page/route and a page/route can be used in multiple tests without repeating the code.
+
+### PO Method's class instead of custom commands
 Let consider the previous login custom command can only be used in a login page. Then it is prefered to create a *cypress/support/pageObjects/yourWebsite/loginPage.js* file:
 ```
 class loginPage_PO {
@@ -673,7 +676,55 @@ Describe("how login page should behave", () => {
 })
 ```
 
-This way you make a dissociation between a test and a page. Therefore, a test can handle more than a page and a page can be used in multiple tests without repeating the code.
+### PO constructor's class initialization
+Any required data for a PO to work must be initialized during the construction of the object. It prevents a test to call this class and forget to initialize its datas.
+For instance in the test:
+```
+import My_PO from "../../support/pageObjects/website_domain/my_PO";
+/// <reference types="cypress" />
+
+describe("what the test do", () => {
+  // define at the root of the test to be available amongst all hooks.
+  let my_PO
+
+  before(() => {
+    my_PO = new My_PO(); // initialized here to be able to apply cypress command in the constructor
+  });
+
+  beforeEach(function () {
+    my_PO.AccessHomePage();
+    my_PO.ClickOnLink();
+  })
+
+  it("must validate a specific test", () => {
+    my_PO.applyMethod();
+  });
+});
+```
+
+in the PO class:
+```
+class My_PO {
+    constructor() {
+        this.setProductNames();
+    }
+
+    setProductNames() {
+        // initialize data from cypress/fixtures/products.json file
+        cy.fixture("products").then((data) => {
+            this.products = data;
+        });
+    }
+
+    applyMethod() {
+        this.products.productName.forEach(function (element) {
+            // do something
+        })
+    }
+}
+
+export default My_PO;
+```
 
 ## Cypress configuration
 Cypress' configurations are stored in *cypress.config.js*.
