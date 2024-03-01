@@ -18,7 +18,5 @@ describe("Add multiple items to basket", () => {
 
   it("Add specific items to basket", () => {
     autoStoreHairCarePO.addProductToBasket();
-
-    cy.get('.dropdown-toggle > .fa').click();
   });
 });

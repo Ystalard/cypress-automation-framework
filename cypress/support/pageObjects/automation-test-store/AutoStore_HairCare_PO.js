@@ -13,11 +13,11 @@ class AutoStore_HairCare_PO {
         this.products.productName.forEach(function (element) {
             cy.get(".fixed_wrapper .prdocutname").each(($el, index) => {
                 if($el.text() === element) {
-                    cy.log($el.text())
                     cy.get('.productcart').eq(index).click();
                 }
             })
         })
+        cy.get('.dropdown-toggle > .fa').click();
     }
 }
 
