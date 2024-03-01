@@ -792,3 +792,31 @@ cy.screenshot("screenshot title")
 > when no title given, it is made up from `describe()` and `it()` names.
 ### Automatic cleareance of assets before run
 Screenshots and videos folders can be removed before the run of cypress through a configuration key: `trashAssetsBeforeRuns: true`. 
+
+## Viewport sizing
+To validate multiplaform use cases, it is necessary to test different size (smartphone, tablet, surface, laptop screen, desktop screen, etc...).
+Details on how to configure the `cy.viewport()`command [here](https://docs.cypress.io/api/commands/viewport#Syntax).
+For instance:
+```
+cy.viewport(1024, 768)
+cy.viewport('iphone-6')
+```
+> default value is 1000px width per 660px height.
+
+The viewport size is displayed on the cypress interface:<br/>
+![image](ReadMeImages/viewportDisplay.png)
+
+### Global initialization
+In cypress.config.js:
+```
+e2e: {
+    viewportHeight: 1080,
+    viewportWidth: 1920
+}
+```
+
+When the cypress interface can't display the 1:1 size it shows a zoom out snapshot of the website:<br/>
+![image](ReadMeImages/ZoomOutViewport.PNG)
+
+
+
