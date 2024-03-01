@@ -11,7 +11,7 @@ module.exports = defineConfig({
     defaultCommandTimeout: 10000,
     screenshotOnRunFailure: true,
     trashAssetsBeforeRuns: true,
-    video: true,
+    video: false,
     env: {
       // set environment variables
       hideXHRInCommandLog: "true",
