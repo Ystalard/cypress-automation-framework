@@ -818,5 +818,13 @@ e2e: {
 When the cypress interface can't display the 1:1 size it shows a zoom out snapshot of the website:<br/>
 ![image](ReadMeImages/ZoomOutViewport.PNG)
 
+## Clear cookies/storage
+Cypress clears all the cookies when it starts to run. Still, it might be requeste on a specif test amongst all the test run to clear it.
+The localStorage is also cleared before each test.
+more details:
+- [cy.clearCookies()](https://docs.cypress.io/api/commands/clearcookies#Syntax)
+- [cy.clearLocalStorage()](https://docs.cypress.io/api/commands/clearlocalstorage#Syntax)
+
+
 
 
