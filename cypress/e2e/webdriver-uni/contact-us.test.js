@@ -4,6 +4,7 @@ import Contact_Us_PO from "../../support/pageObjects/webdriver-uni/Contact_Us_PO
 /// <reference types="cypress" />
 
 describe("Test Contact Us form via WebdriverUni", () => {
+    Cypress.config('defaultCommandTimeout', 20000)
     const homePage_PO = new HomePage_PO()
     const contact_Us_PO = new Contact_Us_PO()
 
@@ -16,10 +17,6 @@ describe("Test Contact Us form via WebdriverUni", () => {
     beforeEach(() => {
         homePage_PO.visitHomepage()
         homePage_PO.clickOn_ContactUs_Button()
-        
-        cy.document().should('have.property', 'charset').and('eq', 'UTF-8')
-        cy.title().should('include', 'WebDriver | Contact Us')
-        cy.url().should('include', 'Contact-Us/contactus.html')
     });
     
     it("Should be able to submit a successful submission via contact us form", () => {

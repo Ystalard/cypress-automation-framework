@@ -680,3 +680,38 @@ Cypress' configurations are stored in *cypress.config.js*.
 You can see the current configuration setup directly from *Settings* menu. Also, clicking on the edit button (see below image) would redirect you to the *cypress.config.js*
 ![image](ReadMeImages/cypressConfiguration.PNG)<br/>
 > see [cypress documentation](https://docs.cypress.io/guides/references/configuration) for more details upon configuration.
+
+## Timeouts and Pause
+### Overwrite global timeout on specific command
+```
+cy.visit(Cypress.env('webdriveruniversityBaseUrl', { timeout: 60000 }));
+```
+### Overwrite global timeout on a test
+```
+Describe('my test', () => {
+
+Cypress.config('defaultCommandTimeout', 20000)
+
+    it('do something', () => {
+        //something to do
+    })
+})
+```
+
+### Force a pause
+You can force a pause after a specific cypress command and even inside the same instruction:<br/>
+```
+cy.title().pause().should('include', 'something'')
+```
+When adding a pause inside the same isntruction, it allows to go to the next cypress command in the instruction without continuing the hole test:<br/>
+![image](ReadMeImages/Pause.png)
+
+> usefull to debug a test !
+
+### Wait
+Used to wait for an actions or a certain time.
+```
+cy.wait(3000) // wait 3000ms
+cy.wait('@getProfile') // wait for alias to be available
+```
+It is not recommended to add wait as it can explode the time for all the test's run.
