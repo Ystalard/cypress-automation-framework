@@ -8,6 +8,9 @@ module.exports = defineConfig({
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
     excludeSpecPattern: "cypress/e2e/other/*.js",
     defaultCommandTimeout: 10000,
+    screenshotOnRunFailure: true,
+    trashAssetsBeforeRuns: true,
+    video: true,
     env: {
       // set environment variables
       hideXHRInCommandLog: "true",

@@ -13,6 +13,8 @@ class Contact_Us_PO {
             cy.get('textarea.feedback-input').type(description)
         }
         cy.get('[type="submit"]').click()
+        cy.screenshot("Make a contact us form submission")
+        
     }
 }
 

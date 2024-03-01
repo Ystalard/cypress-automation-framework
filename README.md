@@ -778,3 +778,17 @@ cy.get("cssSelector").each(($el) => {
     })
 ```
 ![image](ReadMeImages/Debugger.PNG)
+
+## Capturing screenshots and videos
+See the configuration's details [here](https://docs.cypress.io/guides/references/configuration#Screenshots)
+Videos and screenshots are made only when executing cypress with the `cypress run` command line.
+The report indicate where the screenshot of the failed test is stored:<br/>
+![image](ReadMeImages/Screenshots.PNG)
+
+It is also possible to take a screenshot at a specific moment from cypress command:
+```
+cy.screenshot("screenshot title")
+```
+> when no title given, it is made up from `describe()` and `it()` names.
+### Automatic cleareance of assets before run
+Screenshots and videos folders can be removed before the run of cypress through a configuration key: `trashAssetsBeforeRuns: true`. 
