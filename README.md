@@ -766,3 +766,15 @@ cy.wait(3000) // wait 3000ms
 cy.wait('@getProfile') // wait for alias to be available
 ```
 It is not recommended to add wait as it can explode the time for all the test's run.
+
+## Debugger
+As a synchronous command, it must be declared in the then() promise to ensure it applies at the expected location in the test workflow.
+For instance:
+```
+cy.get("cssSelector").each(($el) => {
+        //do something
+    }).then(() => {
+        debugger // will pause in the debugger dev tool once each selected elements are treated.
+    })
+```
+![image](ReadMeImages/Debugger.PNG)
