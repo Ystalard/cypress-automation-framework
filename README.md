@@ -825,6 +825,42 @@ more details:
 - [cy.clearCookies()](https://docs.cypress.io/api/commands/clearcookies#Syntax)
 - [cy.clearLocalStorage()](https://docs.cypress.io/api/commands/clearlocalstorage#Syntax)
 
+## NPX and scripts
+When running the tests, a specific test, recording on cypress cloud or jus topening cypress interface we had to apply one of the below command lines:
+```
+./node_modules/cypress/bin/cypress open
+./node_modules/cypress/bin/cypress run --spec cypress/e2e/webdriver-uni/checkboxes.test.js
+./node_modules/cypress/bin/cypress run --spec cypress/e2e/webdriver-uni/checkboxes.test.js
+./node_modules/cypress/bin/cypress run --spec cypress/e2e/webdriver-uni/checkboxes.test.js --record --key
+```
+
+with npx, it just simplify them:
+```
+npx cypress open
+npx cypress run --spec cypress/e2e/webdriver-uni/checkboxes.test.js
+npx cypress run --spec cypress/e2e/webdriver-uni/checkboxes.test.js --record --key
+```
+
+### NPX install
+```
+npm install npx
+```
+
+### setup scripts
+In package.json file, it is possible to setup scripts to apply directives such as:
+```
+"scripts": {
+    "triggerAllTests-headless": "npx cypress run",
+    "triggerAllTests-headed": "npx cypress run --headed"
+  }
+```
+
+Which can then be executed by running them on npm command line:
+```
+npm run triggerAllTests-headless
+```
+
+
 
 
 
