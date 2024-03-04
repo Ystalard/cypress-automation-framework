@@ -934,7 +934,7 @@ The html report is generated at *mochawesome-report/assets/mochawesome.html* and
 ![image](ReadMeImages/MochawesomeReport.PNG)
 
 ## Environment configuration file
-### setup cypress.config.js file
+### setup *cypress.config.js* file
 ```
 const fs = require('fs-extra');
 const path = require('path');
@@ -980,10 +980,18 @@ For instance:
     }
 }
 ```
-Any value setup in this file would overwrite the existing one setup in cypress.config.js
+Any value setup in this file would overwrite the existing one setup in *cypress.config.js*
 
 ### Run cypress on specific environment
 ```
 npx cypress open --env configFile=staging
 ```
 The above command will look for the config/staging.json file.
+
+### Access value from configuration file
+Any custom variables must be setup in the env section of the *cypress.config.js* file.<br/>
+Access the custom configuration values:
+```
+Cypress.env.myKey
+```
+> Any key setup in an environment config file such as *config/staging.json* can be retrieved through this command.
