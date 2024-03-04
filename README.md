@@ -933,6 +933,57 @@ npx mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && n
 The html report is generated at *mochawesome-report/assets/mochawesome.html* and look like this:<br/>
 ![image](ReadMeImages/MochawesomeReport.PNG)
 
+## Environment configuration file
+### setup cypress.config.js file
+```
+const fs = require('fs-extra');
+const path = require('path');
 
+function getConfigurationByFile(file) {
+  const pathToConfigFile = path.resolve('config', `${file}.json`)
+  
+  if(!fs.existsSync(pathToConfigFile)) {
+    console.log('No custom config file found.' + pathToConfigFile)
+    return {}
+  }
 
+  return fs.readJson(pathToConfigFile)
+}
 
+module.exports = defineConfig({
+  projectId: "wztwmc",
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+      const file = config.env.configFile || ''
+
+      return getConfigurationByFile(file)
+    }
+  }
+})
+```
+> `const pathToConfigFile = path.resolve('config', `${file}.json`)` path to the config folder storing a list of config file such as:
+- dev.json
+- staging.json
+- security.json
+- prod.json
+
+> `config.env.configFile`: key set up as argument when running cypress app.
+
+### Setup an environment config file
+For instance:
+```
+{
+    "baseUrl": "https://www.automationteststore.com/",
+    "env": {
+        "name": "Joe Blogs"
+    }
+}
+```
+Any value setup in this file would overwrite the existing one setup in cypress.config.js
+
+### Run cypress on specific environment
+```
+npx cypress open --env configFile=staging
+```
+The above command will look for the config/staging.json file.
