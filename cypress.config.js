@@ -23,7 +23,7 @@ module.exports = defineConfig({
       return getConfigurationByFile(file)
     },
     specPattern: "cypress/e2e/**/*.{js,jsx,ts,tsx,feature}",
-    excludeSpecPattern: "cypress/e2e/other/*.js",
+    // excludeSpecPattern: "cypress/e2e/other/*.js",
     defaultCommandTimeout: 10000,
     screenshotOnRunFailure: true,
     trashAssetsBeforeRuns: true,
