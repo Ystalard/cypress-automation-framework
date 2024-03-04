@@ -1024,3 +1024,30 @@ it("should do something", {
     }, () => {}
 )
 ```
+
+### Restrict test on browser
+If any kind of test should run only on some browser. It can be configured individually as done for the retry configuration:
+```
+it("should do something", {
+        retries: {
+            runMode: 2,
+            openMode: 2
+        },
+        browser: ['chrome', 'firefox']
+    }, () => {}
+)
+```
+It would be displayed as below in Cypress interface:<br/>
+![image](ReadMeImages/SkipTestOnBrowser.PNG)
+
+> In a more global aspect, any kind of configuration key can be setup on an individual test `it()`or `describe()`.
+
+Also, inside a test, you can check the browser to apply a different behaviour:
+```
+it("should do something", () => {
+    if(Cypress.isBrowser('chrome'))
+    {
+        //apply chrome behaviour
+    }
+})
+```

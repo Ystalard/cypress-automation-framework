@@ -17,7 +17,8 @@ describe("Test Contact Us form via Automation Test Store", () => {
         retries: {
             runMode: 2,
             openMode: 2
-        }
+        },
+        browser: ['chrome', 'firefox']
     }, () => {
 
 
