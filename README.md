@@ -933,8 +933,9 @@ npx mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && n
 The html report is generated at *mochawesome-report/assets/mochawesome.html* and look like this:<br/>
 ![image](ReadMeImages/MochawesomeReport.PNG)
 
-## Environment configuration file
-### setup *cypress.config.js* file
+# Environment configuration
+## setup multiple configuration file
+### in *cypress.config.js* file
 ```
 const fs = require('fs-extra');
 const path = require('path');
@@ -971,7 +972,7 @@ module.exports = defineConfig({
 > `config.env.configFile`: key set up as argument when running cypress app.
 
 ### Setup an environment config file
-For instance:
+For instance config/staging.json:
 ```
 {
     "baseUrl": "https://www.automationteststore.com/",
@@ -992,6 +993,34 @@ The above command will look for the config/staging.json file.
 Any custom variables must be setup in the env section of the *cypress.config.js* file.<br/>
 Access the custom configuration values:
 ```
-Cypress.env.myKey
+Cypress.env.name
 ```
 > Any key setup in an environment config file such as *config/staging.json* can be retrieved through this command.
+
+## Configure retry logic on failed test
+### Global retry setup
+ In configuration file:
+ ```
+ {
+    retries:{
+      runMode: 0,
+      openMode: 1
+    }
+ }
+ ```
+ > when running test from `cypress run` command it won't rety failed test. But it wil retry once through `cypress open`.
+
+On cypress interface, the retries are displayed as below:<br/>
+![image](ReadMeImages/Retry.PNG)
+
+### Individual setup
+In any test file, the configuration can be edited:
+```
+it("should do something", {
+        retries: {
+            runMode: 2,
+            openMode: 2
+        }
+    }, () => {}
+)
+```

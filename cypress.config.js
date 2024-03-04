@@ -32,6 +32,10 @@ module.exports = defineConfig({
     reporterOptions: {
       configFile: 'reporter-config.json',
     },
+    retries:{
+      runMode: 0,
+      openMode: 1
+    },
     env: {
       // set environment variables
       hideXHRInCommandLog: "true",

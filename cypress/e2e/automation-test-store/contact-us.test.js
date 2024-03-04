@@ -6,16 +6,21 @@ describe("Test Contact Us form via Automation Test Store", () => {
     })
 
     beforeEach(() => {
-        cy.visit(Cypress.env('automationTestStoreBaseUrl')); 
+        cy.visit(Cypress.env('automationTestStoreBaseUrl'));
         cy.xpath('//a[contains(@href, "contact") and starts-with(text(), "Con")]').click();
         cy.fixture('userDetails').as('user')
         cy.fixture('enquiryValidation').as('enquiryValidation')
         cy.fixture('log').as('log')
     });
 
-    it("Should be able to submit a successful submission via contact us form", () => {
-        
-        
+    it("Should be able to submit a successful submission via contact us form", {
+        retries: {
+            runMode: 2,
+            openMode: 2
+        }
+    }, () => {
+
+
         cy.get('@user').then((user) => {
             cy.get('#ContactUsFrm_first_name').type(user.first_name);
             cy.get('#ContactUsFrm_email').type(user.email);
@@ -40,17 +45,17 @@ describe("Test Contact Us form via Automation Test Store", () => {
             cy.get('#ContactUsFrm_email').type(user.emailInvalid);
             cy.get('#ContactUsFrm_enquiry').type(user.enquiry);
         })
-        
+
         cy.get('button[title="Submit"]').click();
 
         cy.get('@enquiryValidation').then((expect) => {
-            cy.get('.element_error').should('include.text',expect.enquiryNotValidated)
+            cy.get('.element_error').should('include.text', expect.enquiryNotValidated)
         })
 
         cy.get('@log').then((log) => {
             cy.log(log.itComplete)
         })
-     })
+    })
 
     after(() => {
         cy.get('@log').then((log) => {
